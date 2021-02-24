@@ -1,17 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Switch, Pressable } from 'react-native';
-
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 export default function App() {
-  const [mail, setMail] = useState('');
-  const [password, setPassword] = useState('');
-
   const [emailInput, setEmailInput] = useState(styles.inputInvalid)
   const [passwordInput, setpasswordInput] = useState(styles.inputInvalid)
-
-
-
-  console.log(mail)
   const validInputEmail = (text) => {
     if (text.length >= 6) {
       setEmailInput(styles.inputValid)
@@ -26,51 +18,27 @@ export default function App() {
       setpasswordInput(styles.inputInvalid)
     }
   }
-
-
-
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Mail"
-        keyboardType="email-address"
-        style={emailInput}
-        onChangeText={(email) => {validInputEmail(email)}}
+      <Text>Loggin</Text>
 
-      />
-      <TextInput
+      <TextInput style={emailInput} placeholder="Email" onChangeText={(email) => {validInputEmail(email)}} keyboardType="email-address"></TextInput>
 
-        placeholder="Password"
-        style={passwordInput}
-        onChangeText={(password) => {validInputPassword(password)}}
-      />
-      <Pressable
-        style={{ margin: 8, padding: 8, }}
-      >
-
-        <Text style={styles.button} >Envoyer</Text>
-
-      </Pressable>
+      <TextInput style={passwordInput} placeholder="Password" onChangeText={(password) => {validInputPassword(password)}} secureTextEntry={true}></TextInput>
+      
+      <StatusBar style="auto" />
     </View>
   );
 }
-
 const styles = StyleSheet.create({
+  // #130F40
+  // #30336B
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#130F40',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
-    backgroundColor: 'black',
-    width: 200,
-    margin: 32,
-    padding: 16,
-    color: 'white'
-
-  },
-
   inputInvalid: {
     marginBottom: 15,
     marginTop: 15,
@@ -91,5 +59,4 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'green'
   },
-
 });
